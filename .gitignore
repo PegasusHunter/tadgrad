@@ -1,0 +1,13 @@
+venv
+
+build
+*.egg-info
+
+*.pytest_cache
+**/__pycache__
+*.idea
+*mypy_cache
+
+
+tadgrad/network.py
+
