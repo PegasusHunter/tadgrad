@@ -10,7 +10,7 @@ From PyPi
 pip install tadgrad
 ```
 
-From git
+From GitHub
 ```sh
 pip install git+https://github.com/cospectrum/tadgrad.git
 ```
@@ -26,21 +26,15 @@ from tadgrad.optim import GD
 
 
 nn = Network(loss=MSE)
-nn.append(LinLayer(1, 4))
+nn.append(LinLayer(2, 3))
 nn.append(Layer(relu))
-nn.append(LinLayer(4, 1))
+nn.append(LinLayer(3, 2))
 nn.optim = GD(nn.layers, lr=3e-4)
 
-sqrt = lambda x: x**0.5
-xs = [p/1000 for p in range(1800, 2200)]  # [1.8, 2.2]
+X = [[2, 1], [3, 4], [5, 6]]
+labels = [[4, 2], [-2, 3], [2, 1]]
+nn.fit(X, labels)
 
-X = [[x] for x in xs]
-labels = [[sqrt(x)] for x in xs]
-
-nn.fit(X, labels, epochs=25)
-
-sqrt_2 = nn.predict([2])
-print(f'sqrt(2) = {sqrt_2}')
-
+prediction: list = nn.predict([2, 2])
 ```
 
