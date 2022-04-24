@@ -1,7 +1,7 @@
 import random
 import math
 
-from tadgrad.activations.sigmoid import Sigmoid, sigmoid
+from tadgrad.activations.sigmoid import sigmoid, _sigmoid
 from pylinal import Vector
 
 
@@ -12,9 +12,8 @@ def rand_vec(dim: int):
 def test_sigmoid(tries: int = 5):
     
     for _ in range(tries):
-        dim = random.randint(1, 10)
-        v = rand_vec(dim)
-        print(v)
+        dim: int = random.randint(1, 10)
+        v: Vector = rand_vec(dim)
 
-        assert Sigmoid(v) == Vector(sigmoid(x) for x in v)
-        assert Sigmoid.grad(v).by_input == Vector(sigmoid(x)*(1-sigmoid(x)) for x in v)
+        assert sigmoid(v) == Vector(_sigmoid(x) for x in v)
+        assert sigmoid.grad(v).by_input == Vector(_sigmoid(x)*(1 - _sigmoid(x)) for x in v)

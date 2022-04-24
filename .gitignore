@@ -1,6 +1,7 @@
 venv
 
 build
+dist
 *.egg-info
 
 *.pytest_cache
@@ -10,4 +11,6 @@ build
 
 
 tadgrad/network.py
+tadgrad/optim.py
 
+*.swp

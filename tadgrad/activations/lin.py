@@ -6,7 +6,8 @@ from ..typedefs import Grad, Function
 def lin(weights: Matrix) -> Callable[[Vector], Vector]:
 
     def closure(v: Vector) -> Vector:
-        return weights @ v
+        wv: Vector = weights @ v  # type: ignore
+        return wv
 
     return closure
 
@@ -14,7 +15,7 @@ def lin(weights: Matrix) -> Callable[[Vector], Vector]:
 def dlin(weights: Matrix) -> Callable[[Vector], Grad]:
     
     def closure(v: Vector) -> Grad:
-        grad = Grad(by_input=weights, by_params=v)
+        grad: Grad = Grad(by_input=weights, by_params=v)
         return grad
 
     return closure

@@ -1,1 +1,1 @@
-pylinal==0.1.2
+pylinal==0.1.5

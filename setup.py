@@ -21,6 +21,7 @@ setup(
     author='Alexey Severin',
     install_requires=requirements,
     packages=find_packages(),
+    package_data={'tadgrad': ['py.typed']},
     keywords=['python'],
 )
 

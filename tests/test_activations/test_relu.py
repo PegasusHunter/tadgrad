@@ -1,5 +1,5 @@
 import random
-from tadgrad.activations.relu import ReLU, relu, drelu
+from tadgrad.activations.relu import relu, _relu, _drelu
 from pylinal import Vector
 
 
@@ -9,8 +9,8 @@ def rand_vec(dim: int):
 
 def test_relu():
     for _ in range(10):
-        dim = random.randint(1, 10)
-        v = rand_vec(dim)
+        dim: int = random.randint(1, 10)
+        v: Vector = rand_vec(dim)
 
-        assert ReLU(v) == Vector(relu(x) for x in v)
-        assert ReLU.grad(v).by_input == Vector(drelu(x) for x in v)
+        assert relu(v) == Vector(_relu(x) for x in v)
+        assert relu.grad(v).by_input == Vector(_drelu(x) for x in v)

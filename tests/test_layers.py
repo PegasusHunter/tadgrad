@@ -1,19 +1,20 @@
 import random
-from tadgrad import Layer, DenseLayer
+from tadgrad import Layer, LinLayer
 from tadgrad.typedefs import Grad
 
 from pylinal import Vector, Matrix
 
 
-def test_dense():
-    dim = random.randint(1, 10)
-    dim_out = random.randint(1, 10)
+def test_linlayer():
+    dim: int = random.randint(1, 10)
+    dim_out: int = random.randint(1, 10)
 
-    v = Vector(i for i in range(dim))
-    layer = DenseLayer(len(v), dim_out)
+    v: Vector = Vector(i for i in range(dim))
+    layer: LinLayer = LinLayer(len(v), dim_out)
 
-    out = layer(v)
-    inp = layer.buffer.pop()
+    out: Vector = layer(v)
+    inp: Vector = layer.inputs.pop()
+    print(inp[0])
 
     assert inp == v
     assert isinstance(out, Vector)
@@ -26,3 +27,14 @@ def test_dense():
     assert isinstance(layer.grad(v), Grad)
     assert layer.grad(v).by_params == v
     assert layer.grad(v).by_input == w
+
+    return
+
+
+def main():
+    test_linlayer()
+    return
+
+
+if __name__ == '__main__':
+    main()

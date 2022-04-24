@@ -17,11 +17,15 @@ def test_mse(tries: int = 10):
         dim = random.randint(1, 15)
         v = rand_vec(dim)
 
-        for l in range(0, 10):
-            assert MSE(l)(v) == sum((x-l)**2 for x in v)
-            grad = MSE(l).grad(v).by_input
+        for l in range(0, dim):
+            label = [0 for _ in range(dim)]
+            label[l] = l
+
+            assert MSE(label)(v) == sum((x-l)**2 for x, l in zip(v, label))
+            grad = MSE(label).grad(v).by_input
             assert isinstance(grad, Vector)
             assert len(grad) == len(v)
+    
     return
 
 
@@ -31,11 +35,15 @@ def test_mae(tries: int = 10):
         dim = random.randint(1, 15)
         v = rand_vec(dim)
 
-        for l in range(0, 10):
-            assert MAE(l)(v) == sum(abs(x-l) for x in v)
-            grad = MAE(l).grad(v).by_input
+        for l in range(0, dim):
+            label = [0 for _ in range(dim)]
+            label[l] = l
+
+            assert MAE(label)(v) == sum(abs(x-l) for (x, l) in zip(v, label))
+            grad = MAE(label).grad(v).by_input
             assert isinstance(grad, Vector)
             assert len(grad) == len(v)
+    
     return
 
 
