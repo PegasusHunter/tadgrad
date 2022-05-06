@@ -35,6 +35,6 @@ X = [[2, 1], [3, 4], [5, 6]]
 labels = [[4, 2], [-2, 3], [2, 1]]
 nn.fit(X, labels)
 
-prediction: list = nn.predict([2, 2])
+prediction: list = nn.predict([2, 3])
 ```
 
